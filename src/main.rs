@@ -26,6 +26,16 @@ enum Coin {
     Quarter,
 }
 
+enum WinstonLevel {
+    Error,
+    Warn,
+    Info,
+    Http,
+    VERBOSE,
+    Debug,
+    Silly,
+}
+
 fn main() {
     let rect1 = Rectangle {
         width: 30,
@@ -50,6 +60,8 @@ fn main() {
     // let loopback = IpAddr::V6(String::from("::1"));
     let some_coin = Coin::Penny;
     println!("Value in cents: {}", value_in_cents(some_coin));
+    // enum experience
+    custom_logger(WinstonLevel::Error, "Something went wrong");
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
@@ -58,5 +70,17 @@ fn value_in_cents(coin: Coin) -> u8 {
         Coin::Nickel => 5,
         Coin::Dime => 10,
         Coin::Quarter => 25,
+    }
+}
+
+fn custom_logger(level: WinstonLevel, message: &str) {
+    match level {
+        WinstonLevel::Error => println!("Error: {}", message),
+        WinstonLevel::Warn => println!("Warn: {}", message),
+        WinstonLevel::Info => println!("Info: {}", message),
+        WinstonLevel::Http => println!("Http: {}", message),
+        WinstonLevel::VERBOSE => println!("VERBOSE: {}", message),
+        WinstonLevel::Debug => println!("Debug: {}", message),
+        WinstonLevel::Silly => println!("Silly: {}", message),
     }
 }
