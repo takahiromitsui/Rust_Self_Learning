@@ -7,13 +7,38 @@ struct Rectangle {
 //     rectangle.width * rectangle.height
 // }
 
-impl Rectangle{
+impl Rectangle {
     fn area(&self) -> u32 {
         self.width * self.height
     }
 }
 
+// Chapter 6
+enum IpAddr {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
 fn main() {
-  let rect1 = Rectangle { width: 30, height: 50 };
-  println!("The area of the rectangle is {} square pixels.", rect1.area());
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+    //Chapter 6
+    // let four = IpAddrKind::V4;
+    // let six = IpAddrKind::V6;
+    // let home = IpAddr {
+    //     kind: IpAddrKind::V4,
+    //     address: String::from("127.0.0.1"),
+    // };
+    // let loopback = IpAddr {
+    //     kind: IpAddrKind::V6,
+    //     address: String::from("::1"),
+    // };
+    let home = IpAddr::V4(127, 0, 0, 1);
+    let loopback = IpAddr::V6(String::from("::1"));
 }
