@@ -14,9 +14,16 @@ impl Rectangle {
 }
 
 // Chapter 6
-enum IpAddr {
-    V4(u8, u8, u8, u8),
-    V6(String),
+// enum IpAddr {
+//     V4(u8, u8, u8, u8),
+//     V6(String),
+// }
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
 }
 
 fn main() {
@@ -39,6 +46,17 @@ fn main() {
     //     kind: IpAddrKind::V6,
     //     address: String::from("::1"),
     // };
-    let home = IpAddr::V4(127, 0, 0, 1);
-    let loopback = IpAddr::V6(String::from("::1"));
+    // let home = IpAddr::V4(127, 0, 0, 1);
+    // let loopback = IpAddr::V6(String::from("::1"));
+    let some_coin = Coin::Penny;
+    println!("Value in cents: {}", value_in_cents(some_coin));
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
 }
