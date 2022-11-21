@@ -13,7 +13,7 @@ impl Rectangle {
     }
 }
 
-// Chapter 6
+// chapter 6
 // enum IpAddr {
 //     V4(u8, u8, u8, u8),
 //     V6(String),
@@ -45,7 +45,7 @@ fn main() {
         "The area of the rectangle is {} square pixels.",
         rect1.area()
     );
-    //Chapter 6
+    //chapter 6
     // let four = IpAddrKind::V4;
     // let six = IpAddrKind::V6;
     // let home = IpAddr {
@@ -60,8 +60,16 @@ fn main() {
     // let loopback = IpAddr::V6(String::from("::1"));
     let some_coin = Coin::Penny;
     println!("Value in cents: {}", value_in_cents(some_coin));
-    // enum experience
+    // enum experiment
     custom_logger(WinstonLevel::Error, "Something went wrong");
+
+    // chapter 6-placeholder
+    let dice_roll: u8 = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => (),
+    }
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
@@ -83,4 +91,13 @@ fn custom_logger(level: WinstonLevel, message: &str) {
         WinstonLevel::Debug => println!("Debug: {}", message),
         WinstonLevel::Silly => println!("Silly: {}", message),
     }
+}
+
+// chapter 6-placeholder
+fn add_fancy_hat() {
+    println!("Adding a fancy hat!");
+}
+
+fn remove_fancy_hat() {
+    println!("Removing a fancy hat!");
 }
