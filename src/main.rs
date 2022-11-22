@@ -86,6 +86,21 @@ fn main() {
     for i in &numbers {
         println!("{}", i);
     }
+    // chapter 8 vector enum
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
+    match &row[0] {
+        SpreadsheetCell::Text(s) => println!("{}", s),
+        _ => (),
+    }
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
