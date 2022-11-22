@@ -70,6 +70,22 @@ fn main() {
         7 => remove_fancy_hat(),
         _ => (),
     }
+    // chapter 8
+    let v = vec![1, 2, 3, 4, 5];
+    let third = &v[2];
+    println!("The third element is {}", third);
+    match v.get(3) {
+        Some(third) => println!("The third element is {}", third),
+        None => println!("There is no third element."),
+    }
+    // chapter 8 vector loop
+    let mut numbers = vec![1, 2, 3, 4, 5];
+    for i in &mut numbers {
+        *i += 50;
+    }
+    for i in &numbers {
+        println!("{}", i);
+    }
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
