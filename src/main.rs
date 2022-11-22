@@ -1,3 +1,5 @@
+use unicode_segmentation::UnicodeSegmentation;
+
 struct Rectangle {
     width: u32,
     height: u32,
@@ -101,6 +103,15 @@ fn main() {
         SpreadsheetCell::Text(s) => println!("{}", s),
         _ => (),
     }
+    // chapter 8 String
+    let hello = String::from("Hello");
+    for b in hello.chars() {
+        println!("{}", b);
+    }
+    for g in hello.graphemes(true) {
+        println!("{}", g);
+    }
+
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
