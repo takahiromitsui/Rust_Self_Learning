@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use unicode_segmentation::UnicodeSegmentation;
 
 struct Rectangle {
@@ -112,6 +114,16 @@ fn main() {
         println!("{}", g);
     }
 
+    // chapter 8 hash map
+    let blue = String::from("blue");
+    let yellow = String::from("yellow");
+    let mut map = HashMap::new();
+    map.insert(blue, 10);
+    map.insert(yellow, 50);
+    // println!("{}", blue)
+    let team_name = String::from("blue");
+    let score = map.get(&team_name);
+    println!("{:?}", score);
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
