@@ -1,4 +1,8 @@
-use std::{collections::HashMap, fs::File, io::{Read, self}};
+use std::{
+    collections::HashMap,
+    fs::File,
+    io::{self, Read},
+};
 
 use unicode_segmentation::UnicodeSegmentation;
 
@@ -177,14 +181,12 @@ fn remove_fancy_hat() {
 
 // chapter 9 error handling
 fn read_username_from_file() -> Result<String, io::Error> {
-    let f_result = File::open("hello.txt");
-    let mut f = match f_result {
-        Ok(file) => file,
-        Err(e) => return Err(e),
-    };
+    // let mut f = File::open("hello.txt")?;
+    // let mut f = match f_result {
+    //     Ok(file) => file,
+    //     Err(e) => return Err(e),
+    // };
     let mut username = String::new();
-    match f.read_to_string(&mut username) {
-        Ok(_) => Ok(username),
-        Err(e) => Err(e),
-    }
+    File::open("hello.txt")?.read_to_string(&mut username)?;
+    Ok(username)
 }
