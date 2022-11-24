@@ -1,6 +1,6 @@
 use std::{
     collections::HashMap,
-    fs::{File, self},
+    fs::{self, File},
     io::{self, Read},
 };
 
@@ -147,6 +147,20 @@ fn main() {
     // let greeting_file = File::open("hello.txt").expect("hello.txt should be included in this project");
     let usernames = read_username_from_file().unwrap();
     println!("{}", usernames);
+    // chapter 10
+    let tweet = Tweet {
+        username: String::from("@janedoe"),
+        content: String::from("Hello, world!"),
+        reply: false,
+        retweet: false,
+    };
+    let article = NewsArticle {
+        author: String::from("Jane Doe"),
+        headline: String::from("Ein Prosit"),
+        content: String::from("Ein Prosit, ein Prosit, der Gemütlichkeit"),
+    };
+    println!("1 new tweet: {}", tweet.summarize());
+    println!("1 new article: {}", article.summarize());
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
@@ -190,4 +204,43 @@ fn read_username_from_file() -> Result<String, io::Error> {
     // File::open("hello.txt")?.read_to_string(&mut username)?;
     // Ok(username)
     fs::read_to_string("hello.txt")
+}
+
+// chapter 10 trait
+pub struct NewsArticle {
+    pub headline: String,
+    pub author: String,
+    pub content: String,
+}
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+
+pub trait Summary {
+    fn summarize_author(&self) -> String;
+    fn summarize(&self) -> String {
+        format!("Read more from {}...", self.summarize_author())
+    }
+}
+
+impl Summary for NewsArticle {
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.author)
+    }
+    fn summarize(&self) -> String {
+        format!("{}, by {}", self.headline, self.author)
+    }
+}
+
+impl Summary for Tweet {
+    fn summarize_author(&self) -> String {
+        format!("{}", self.username)
+    }
+    // fn summarize(&self) -> String {
+    //     format!("{}: {}", self.username, self.content)
+    // }
 }
