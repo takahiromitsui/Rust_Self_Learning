@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, fs::File, io::ErrorKind};
 
 use unicode_segmentation::UnicodeSegmentation;
 
@@ -124,6 +124,21 @@ fn main() {
     let team_name = String::from("blue");
     let score = map.get(&team_name);
     println!("{:?}", score);
+    // chapter9 panic
+    // let v = vec![1, 2, 3];
+    // v[99];
+    let greeting_file_result = File::open("hello.txt");
+    let greeting_file = match greeting_file_result {
+        Ok(file) => file,
+        // Err(error) => panic!("Problem opening the file: {:?}", error),
+        Err(error) => match error.kind() {
+            ErrorKind::NotFound => match File::create("hello.txt") {
+                Ok(fc) => fc,
+                Err(e) => panic!("Problem creating the file: {:?}", e),
+            },
+            other_error => panic!("Problem opening the file: {:?}", other_error),
+        },
+    };
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
