@@ -162,6 +162,11 @@ fn main() {
     // println!("1 new tweet: {}", tweet.summarize());
     // println!("1 new article: {}", article.summarize());
     notify(&tweet, &article);
+    // chapter 10 lifetime
+    let message1 = "Hello!";
+    let message2 = "Guten Tag!";
+    let longest = longest(message1, message2);
+    println!("The longest message is {}", longest);
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
@@ -249,4 +254,12 @@ impl Summary for Tweet {
 pub fn notify(item1: &impl Summary, item2: &impl Summary) {
     println!("Breaking news! {}", item1.summarize());
     println!("Breaking news! {}", item2.summarize());
+}
+
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
 }
