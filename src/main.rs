@@ -159,8 +159,9 @@ fn main() {
         headline: String::from("Ein Prosit"),
         content: String::from("Ein Prosit, ein Prosit, der Gemütlichkeit"),
     };
-    println!("1 new tweet: {}", tweet.summarize());
-    println!("1 new article: {}", article.summarize());
+    // println!("1 new tweet: {}", tweet.summarize());
+    // println!("1 new article: {}", article.summarize());
+    notify(&tweet, &article);
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
@@ -243,4 +244,9 @@ impl Summary for Tweet {
     // fn summarize(&self) -> String {
     //     format!("{}: {}", self.username, self.content)
     // }
+}
+
+pub fn notify(item1: &impl Summary, item2: &impl Summary) {
+    println!("Breaking news! {}", item1.summarize());
+    println!("Breaking news! {}", item2.summarize());
 }
